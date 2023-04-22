@@ -1,21 +1,38 @@
-# Introduction
-msmtp is an SMTP client that helps send mails from Mutt and other mail user agents. It transmits mails to an SMTP server, which in turn takes care of further delivery.
+---
+title: "Install and Configure msmtp for Sending Emails in Linux"
+description: "Configure and install the SMTP client msmtp to send emails from the command line using the terminal."
+---
 
-# Install msmtp
+# {{ $frontmatter.title }}
+
+## Introduction
+
+msmtp is an SMTP client that helps send mails from Mutt and other mail user agents. It transmits mails to an SMTP
+server, which in turn takes care of further delivery.
+
+## Install msmtp
+To install msmtp, you can run the following command in your terminal:
 ``` bash
 sudo apt-get install msmtp msmtp-mta mailutils
 ```
 
-# Configuration
-Create an **Systemwide** MSMTP configuration inthe following directory
+The `msmtp` package contains the SMTP client, while `msmtp-mta` and `mailutils` packages provide the necessary utilities for sending and receiving mail.
+
+## Configuration
+
+Create an **Systemwide** MSMTP configuration in the following file
+
 ``` bash
 sudo nano /etc/msmtprc
 ```
-> **Notice:** with this configuration only the root user can send mails  
+:::info
+**With this configuration only the root user can send mails**
+:::
 
 The Content of the Configuration File should be the following:
 
-Fields marked with ```# TODO``` have to be replaced with your own Values
+Fields marked with `# TODO` have to be replaced with your own Values
+
 ``` 
 # Set default values for all following accounts.
 defaults
@@ -36,12 +53,12 @@ tls on
 #tls_crl_file ~/.tls-crls
 
 # Mail account
-# TODO: Use your own mail address
-account bob@meindedomain.de
+# TODO: Use your own mail address // [!code focus]
+account bob@meindedomain.de // [!code focus]
 
 # Host name of the SMTP server
-# TODO: Use the host of your own mail account
-host smtp.meindedomain.de
+# TODO: Use the host of your own mail account // [!code focus]
+host smtp.meindedomain.de // [!code focus]
 
 # This is especially important for mail providers like 
 # Ionos, 1&1, GMX and web.de
@@ -55,14 +72,14 @@ set_from_header on
 #tls_fingerprint 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33
 
 # Envelope-from address
-# TODO: Use your own mail address
-from bob@meindedomain.de
+# TODO: Use your own mail address // [!code focus]
+from bob@meindedomain.de // [!code focus]
 
 # Authentication. The password is given using one of five methods, see below.
 auth on
 
-# TODO: Use your own user name fpr the mail account
-user bob@meindedomain.de
+# TODO: Use your own user name fpr the mail account // [!code focus]
+user bob@meindedomain.de // [!code focus]
 
 # Password method 1: Add the password to the system keyring, and let msmtp get
 # it automatically. To set the keyring password using Gnome's libsecret:
@@ -79,8 +96,8 @@ user bob@meindedomain.de
 # Password method 3: Store the password directly in this file. Usually it is not
 # a good idea to store passwords in plain text files. If you do it anyway, at
 # least make sure that this file can only be read by yourself.
-# TODO: Use the password of your own mail account
-password pAssW0Rd123
+# TODO: Use the password of your own mail account // [!code focus]
+password pAssW0Rd123 // [!code focus]
 
 # Password method 4: Store the password in ~/.netrc. This method is probably not
 # relevant anymore.
@@ -89,48 +106,64 @@ password pAssW0Rd123
 # it. This means you need to be able to type into a terminal when msmtp runs.
 
 # Set a default account
-# TODO: Use your own mail address
-account default: bob@meindedomain.de
+# TODO: Use your own mail address // [!code focus]
+account default: bob@meindedomain.de // [!code focus]
 
 # Map local users to mail addresses (for crontab)
 aliases /etc/aliases
 ```
+
 > TODO -> Move to Password method 2
 
-To be able to send mails as a nonroot user you can now copy the file to your home folder 
+To be able to send mails as a nonroot user you can now copy the file to your home folder
+
 ``` bash
 sudo cp /etc/msmtprc ~/.msmtprc
 ```
 
-Next we make sure that not everyone has access to the files (especially important if the password is stored directly in the configuration):
+Next we make sure that not everyone has access to the files (especially important if the password is stored directly in
+the configuration):
+
 ``` bash
 sudo chmod 600 /etc/msmtprc
 chmod 600 ~/.msmtprc
 ```
 
-Finally, an alias is created so that the recipient address of the root account (or the account that will later be used to send e-mail) is known. This is specified in the file that is also listed at the very end of the configuration of msmtp:
+Finally, an alias is created so that the recipient address of the root account (or the account that will later be used
+to send e-mail) is known. This is specified in the file that is also listed at the very end of the configuration of
+msmtp:
+
 ``` bash
 sudo nano /etc/aliases
 ```
-The recipient address of the root account is now specified here. E-mails will now be sent to this address if, for example, a cron job should fail. In addition, a general "fallback recipient address" is specified if system messages do not occur in the context of the root account:
+
+The recipient address of the root account is now specified here. E-mails will now be sent to this address if, for
+example, a cron job should fail. In addition, a general "fallback recipient address" is specified if system messages do
+not occur in the context of the root account:
+
 ```
 root: admin@meinedomain.de
 default: admin@meinedomain.de
 ```
 
-# Set As Default Mail Program
+## Set As Default Mail Program
+
 Before a first test mail can be sent, the mail program must be defined:
+
 ``` bash
 sudo nano /etc/mail.rc
 ```
 
 The content looks like this:
+
 ```
 set sendmail="/usr/bin/msmtp -t"
 ```
 
-# Send Mail
+## Send Mail
+
 After msmtp has been configured, e-mails can now be sent easily via the command line:
+
 ``` bash
 echo "Content of email" | mail -s "Subject" test@mail.de
 ```
