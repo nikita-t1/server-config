@@ -1,37 +1,54 @@
 # Introduction
-Docker is an application that simplifies the process of managing application processes in containers. Containers let you run your applications in resource-isolated processes. They’re similar to virtual machines, but containers are more portable, more resource-friendly, and more dependent on the host operating system.
+
+Docker is an application that simplifies the process of managing application processes in containers. Containers let you
+run your applications in resource-isolated processes. They’re similar to virtual machines, but containers are more
+portable, more resource-friendly, and more dependent on the host operating system.
 
 # Install
+
 The Docker installation package available in the official Ubuntu repository **may not be the latest version**.  
-For this reason, the following command is not recommended: 
+For this reason, the following command is not recommended:
 ~~```sudo apt-get install docker.io```~~
 
-To ensure we get the latest version, we’ll install Docker from the official Docker repository. To do that, we’ll add a new package source, add the GPG key from Docker to ensure the downloads are valid, and then install the package.
+To ensure we get the latest version, we’ll install Docker from the official Docker repository. To do that, we’ll add a
+new package source, add the GPG key from Docker to ensure the downloads are valid, and then install the package.
 
 First, update your existing list of packages:
+
 ``` bash
 sudo apt update
 ```
+
 Next, install a few prerequisite packages which let apt use packages over HTTPS:
+
 ``` bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ```
+
 Then add the GPG key for the official Docker repository to your system:
+
 ``` bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
+
 Add the Docker repository to APT sources:
+
 ``` bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
+
 Update your existing list of packages again for the addition to be recognized:
+
 ``` bash
 sudo apt update
 ```
+
 Make sure you are about to install from the Docker repo instead of the default Ubuntu repo:
+
 ``` bash
 apt-cache policy docker-ce
 ```
+
 You’ll see output like this, although the version number for Docker may be different:
 > ```
 > docker-ce:
@@ -44,16 +61,21 @@ You’ll see output like this, although the version number for Docker may be dif
 >         500 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
 > ```
 
-Notice that docker-ce is not installed, but the candidate for installation is from the Docker repository for Ubuntu 22.04 (jammy).
+Notice that docker-ce is not installed, but the candidate for installation is from the Docker repository for Ubuntu
+22.04 (jammy).
 
 Finally, install Docker:
+
 ``` bash
 sudo apt install docker-ce
 ```
+
 Docker should now be installed, the daemon started, and the process enabled to start on boot. Check that it’s running:
+
 ``` bash
 sudo systemctl status docker
 ```
+
 The output should be similar to the following, showing that the service is active and running:
 > ```
 > ● docker.service - Docker Application Container Engine
@@ -68,28 +90,38 @@ The output should be similar to the following, showing that the service is activ
 >      CGroup: /system.slice/docker.service
 >              └─7854 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 > ```
-Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the Docker client.
+Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the
+Docker client.
 
-# Executing the Docker Command Without Sudo 
-By default, the docker command can only be run the root user or by a user in the docker group, which is automatically created during Docker’s installation process. If you attempt to run the docker command without prefixing it with sudo or without being in the docker group, you’ll get an output like this:
+# Executing the Docker Command Without Sudo
+
+By default, the docker command can only be run the root user or by a user in the docker group, which is automatically
+created during Docker’s installation process. If you attempt to run the docker command without prefixing it with sudo or
+without being in the docker group, you’ll get an output like this:
 > ``` bash
 > docker: Cannot connect to the Docker daemon. Is the docker daemon running on this host?.
 > See 'docker run --help'.
 > ```
 If you want to avoid typing sudo whenever you run the docker command, add your username to the docker group:
+
 ``` bash
 sudo usermod -aG docker ${USER}
 ```
+
 To apply the new group membership, log out of the server and back in, or type the following:
+
 ``` bash
 su - ${USER}
 ```
+
 You will be prompted to enter your user’s password to continue.
 
 Confirm that your user is now added to the docker group by typing:
+
 ``` bash
 groups
 ```
+
 > ```
 > sammy sudo docker
 > ```
@@ -97,19 +129,25 @@ If you need to add a user to the docker group that you’re not logged in as, de
 
     sudo usermod -aG docker username
 
-The rest of this article assumes you are running the docker command as a user in the docker group. If you choose not to, please prepend the commands with sudo.
+The rest of this article assumes you are running the docker command as a user in the docker group. If you choose not to,
+please prepend the commands with sudo.
 
 Let’s explore the docker command next.
 
 # Using the Docker Command
+
 Using docker consists of passing it a chain of options and commands followed by arguments. The syntax takes this form:
+
 ``` bash
 docker [option] [command] [arguments]
 ```
+
 To view all available subcommands, type:
+
 ``` bash
 docker
 ```
+
 As of Docker version 20.10.14, the complete list of available subcommands includes:
 > ```
 >   attach      Attach local standard input, output, and error streams to a running container
@@ -154,36 +192,48 @@ As of Docker version 20.10.14, the complete list of available subcommands includ
 >   wait        Block until one or more containers stop, then print their exit codes
 > ```
 To view system-wide information about Docker, use:
+
 ``` bash
 docker info
 ```
 
 # Docker with IPv6
-As described in [docker/hub-feedback#1945](https://github.com/docker/hub-feedback/issues/1945), Docker Hub doesn't currently support pulling images over IPv6, which prevents users on an IPv6-only network from interacting with Docker Hub
+
+As described in [docker/hub-feedback#1945](https://github.com/docker/hub-feedback/issues/1945), Docker Hub doesn't
+currently support pulling images over IPv6, which prevents users on an IPv6-only network from interacting with Docker
+Hub
 
 This feature is currently in **beta** and you need an account on [DockerHub](https://hub.docker.com/) to use it.
 
-If you are on a network with IPv6 support, you can begin using the IPv6-only endpoint registry.ipv6.docker.com! To login to this new endpoint simply run the following command (using your regular Docker hub credentials):
+If you are on a network with IPv6 support, you can begin using the IPv6-only endpoint registry.ipv6.docker.com! To login
+to this new endpoint simply run the following command (using your regular Docker hub credentials):
+
 ```
 docker login registry.ipv6.docker.com
 ```
-Once logged in, add the IPv6-only endpoint to the image you wish to push/pull. For example, if you wish to pull the official ubuntu image instead of running the following:  
+
+Once logged in, add the IPv6-only endpoint to the image you wish to push/pull. For example, if you wish to pull the
+official ubuntu image instead of running the following:  
 ~~```docker pull ubuntu:latest```~~  
 you will run:
+
 ```
 docker pull registry.ipv6.docker.com/library/ubuntu:latest
 ```
+
 > Note: ```library``` will only be used for official images, replace this with a namespace when applicable.
 
-This endpoint is only supported for push/pulls for Docker Hub Registry with the Docker CLI, Docker Desktop is not supported. The Docker Hub website and other systems will see updates for IPv6 in the future based on what we learn here.
+This endpoint is only supported for push/pulls for Docker Hub Registry with the Docker CLI, Docker Desktop is not
+supported. The Docker Hub website and other systems will see updates for IPv6 in the future based on what we learn here.
 
-Please note this new endpoint is only a **beta – there is no guarantee of functionality or uptime and it will be removed in the future**. Do not use this endpoint for anything other than testing.
+Please note this new endpoint is only a **beta – there is no guarantee of functionality or uptime and it will be removed
+in the future**. Do not use this endpoint for anything other than testing.
 
 ---
 Sources:  
 [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)  
 [How To Install and Use Docker on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)  
-[How do I install Docker on Ubuntu 16.04 LTS?](https://askubuntu.com/a/938701)  
-  
+[How do I install Docker on Ubuntu 16.04 LTS?](https://askubuntu.com/a/938701)
+
 [Docker Hub registry: Add support for pulling images over IPv6 #89 ](https://github.com/docker/roadmap/issues/89)  
 [Beta IPv6 Support on Docker Hub Registry](https://www.docker.com/blog/beta-ipv6-support-on-docker-hub-registry/)

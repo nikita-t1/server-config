@@ -1,9 +1,12 @@
 # Introduction
-[Flame](https://github.com/pawelmalak/flame) is self-hosted startpage for your server. Flame is very easy to setup and use. With built-in editors, it allows you to setup your very own application hub in no time - no file editing necessary.
+
+[Flame](https://github.com/pawelmalak/flame) is self-hosted startpage for your server. Flame is very easy to setup and
+use. With built-in editors, it allows you to setup your very own application hub in no time - no file editing necessary.
 
 ![flame](/img/flame.bmp)
 
 # Docker Compose
+
 ``` yaml
 version: '3.6'
 

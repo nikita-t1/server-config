@@ -1,24 +1,32 @@
 # Add Date and Time to the ```history``` command
 
 Open the ```.bashrc``` file in your preferred text editor.
+
 ```
 nano ~/.bashrc
 ```
+
 And then add the following line to the end of the file
+
 ```
 export HISTTIMEFORMAT="%F %T "
 ```
+
 > %F –> shows Date in the format ‘YYYY-M-D’ (Year-Month-Day)  
 > %T –> shows Time in the format ‘HH:MM:S’ (Hour:Minute:Seconds)
 
 # Custom Bash Prompt
-![](img/custom_prompt.png)  
+
+![](img/custom_prompt.png)
 
 Create the file ```.bash_prompt``` and open in in a text editor
+
 ```
 nano ~/.bash_prompt
 ```
+
 Paste the following code inside it
+
 ``` bash
 ### PS1 SETTINGS =======================================================
 
@@ -77,10 +85,13 @@ export PROMPT_COMMAND=_bash_prompt
 ```
 
 Then open the ```.bashrc``` file in your preferred text editor.
+
 ```
 nano ~/.bashrc
 ```
+
 And then add the following line to the end of the file
+
 ```
 source ~/.bash_prompt
 ```
