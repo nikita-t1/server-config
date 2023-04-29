@@ -2,18 +2,19 @@
 
 Open the ```.bashrc``` file in your preferred text editor.
 
-```
+``` bash
 nano ~/.bashrc
 ```
 
 And then add the following line to the end of the file
 
-```
+``` bash
 export HISTTIMEFORMAT="%F %T "
 ```
-
+::: info
 > %F –> shows Date in the format ‘YYYY-M-D’ (Year-Month-Day)  
 > %T –> shows Time in the format ‘HH:MM:S’ (Hour:Minute:Seconds)
+:::
 
 # Custom Bash Prompt
 
@@ -21,7 +22,7 @@ export HISTTIMEFORMAT="%F %T "
 
 Create the file ```.bash_prompt``` and open in in a text editor
 
-```
+``` bash
 nano ~/.bash_prompt
 ```
 
@@ -86,12 +87,12 @@ export PROMPT_COMMAND=_bash_prompt
 
 Then open the ```.bashrc``` file in your preferred text editor.
 
-```
+``` bash
 nano ~/.bashrc
 ```
 
 And then add the following line to the end of the file
 
-```
+``` bash
 source ~/.bash_prompt
 ```
