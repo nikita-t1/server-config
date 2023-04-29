@@ -1,4 +1,11 @@
-# Introduction
+---
+title: "WireGuard VPN"
+description: "Learn how to setup a WireGuard VPN Server"
+---
+
+# {{ $frontmatter.title }}
+
+## Introduction
 
 WireGuard is a lightweight Virtual Private Network (VPN) that supports IPv4 and IPv6 connections. A VPN allows you to
 traverse untrusted networks as if you were on a private network
@@ -6,13 +13,13 @@ traverse untrusted networks as if you were on a private network
 > This Guide sets up WireGuard to connect a peer to the WireGuard Server in order to access
 > services <span style="color:brown;font-weight: bold">on the server only</span>.
 
-# Install WireGuard
+## Install WireGuard
 
 ``` bash
 sudo apt install wireguard
 ```
 
-# Generate Keys
+## Generate Keys
 
 Create the private key for WireGuard and change its permissions using the following commands:
 
@@ -35,7 +42,7 @@ command to create the public key file:
 sudo cat /etc/wireguard/private.key | wg pubkey | sudo tee /etc/wireguard/public.key
 ```
 
-This command consists of three individual commands that are chained together using the | (pipe) operator:
+This command consists of three individual commands that are chained together using the `|` (pipe) operator:
 
 - ```sudo cat /etc/wireguard/private.key```: this command reads the private key file and outputs it to the standard
   output stream.
@@ -49,7 +56,7 @@ This command consists of three individual commands that are chained together usi
 When you run the command you will again receive a single line of base64 encoded output, which is the public key for your
 WireGuard Server.
 
-# Creating a WireGuard Server Configuration
+## Creating a WireGuard Server Configuration
 
 Create a new configuration file using nano or your preferred editor by running the following command:
 
@@ -75,26 +82,29 @@ file.
 You now have an initial server configuration that you can build upon depending on how you plan to use your WireGuard VPN
 server.
 
-# Starting the WireGuard Server
+## Starting the WireGuard Server
 
 WireGuard can be configured to run as a systemd service using its built-in wg-quick script.
 
 Using a systemd service means that you can configure WireGuard to start up at boot so that you can connect to your VPN
-at any time as long as the server is running. To do this, enable the wg-quick service for the wg0 tunnel that you’ve
+at any time as long as the server is running. To do this, enable the `wg-quick service` for the `wg0` tunnel that you’ve
 defined by adding it to systemctl:
 
 ``` bash
 sudo systemctl enable wg-quick@wg0.service
 ```
 
-> Notice that the command specifies the name of the tunnel ```wg0``` device name as a part of the service name. This
-> name maps to the ```/etc/wireguard/wg0.conf``` configuration file. This approach to naming means that you can create as
-> many separate VPN tunnels as you would like using your server.
->
-> For example, you could have a tunnel device and name of ```prod``` and its configuration file would
-> be ```/etc/wireguard/prod.conf```. Each tunnel configuration can contain > different IPv4, IPv6, and client firewall
-> settings. In this way you can support multiple different peer connections, each with their own unique IP addresses and >
-> routing rules.
+::: info
+Notice that the command specifies the name of the tunnel ```wg0``` device name as a part of the service name. This
+name maps to the ```/etc/wireguard/wg0.conf``` configuration file. This approach to naming means that you can create as
+many separate VPN tunnels as you would like using your server.
+
+For example, you could have a tunnel device and name of ```prod``` and its configuration file would
+be ```/etc/wireguard/prod.conf```. Each tunnel configuration can contain > different IPv4, IPv6, and client firewall
+settings. In this way you can support multiple different peer connections, each with their own unique IP addresses and >
+routing rules.
+:::
+
 
 Now start the service:
 
@@ -109,7 +119,7 @@ output:
 sudo systemctl status wg-quick@wg0.service
 ```
 
-> ```
+> ``` yaml
 > ● wg-quick@wg0.service - WireGuard via wg-quick(8) for wg0
 >      Loaded: loaded (/lib/systemd/system/wg-quick@.service; enabled; vendor preset: enabled)
 >      Active: active (exited) since Wed 2021-08-25 15:24:14 UTC; 5s ago
@@ -133,16 +143,16 @@ sudo systemctl status wg-quick@wg0.service
 > Aug 25 15:24:14 wg0 wg-quick[3245]: [#] ip6tables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
 > Aug 25 15:24:14 wg0 systemd[1]: Finished WireGuard via wg-quick(8) for wg0.
 > ```
-The output shows the ip commands that are used to create the virtual wg0 device and assign it the IPv4 and IPv6
+The output shows the ip commands that are used to create the virtual `wg0` device and assign it the IPv4 and IPv6
 addresses that you added to the configuration file. You can use these rules to troubleshoot the tunnel, or with the wg
 command itself if you would like to try manually configuring the VPN interface.
 
 With the server configured and running, the next step is to configure your client machine as a WireGuard Peer and
 connect to the WireGuard Server.
 
-# Configuring a WireGuard Peer
+## Configuring a WireGuard Peer
 
-## Windows
+### Windows
 
 Download the WireGuard Client from the official source: [wireguard.com](https://www.wireguard.com/install/)
 
@@ -223,7 +233,7 @@ sudo wg set wg0 peer YOUR_CLIENT_PUBLIC_KEY allowed-ips YOUR_CLIENT_VPN_IP
 >sudo wg set wg0 peer OFAYwzdKei7wm4XHDCILSY|IMH3fGrO5FF7a3Qj+bCw= allowed-ips 10.8.0.2
 >```
 
-## Wireguard Status
+### Wireguard Status
 
 Once you have run the command to add the peer, check the status of the tunnel on the server using the wg command:
 
