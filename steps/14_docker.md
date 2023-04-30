@@ -1,14 +1,23 @@
-# Introduction
+---
+title: Docker
+description: Learn how to install and configure Docker.
+---
+
+# {{ $frontmatter.title }}
+
+## Introduction
 
 Docker is an application that simplifies the process of managing application processes in containers. Containers let you
 run your applications in resource-isolated processes. They’re similar to virtual machines, but containers are more
 portable, more resource-friendly, and more dependent on the host operating system.
 
-# Install
-
+## Install
+::: info
 The Docker installation package available in the official Ubuntu repository **may not be the latest version**.  
-For this reason, the following command is not recommended:
+
+For this reason, the following command is not recommended:  
 ~~```sudo apt-get install docker.io```~~
+:::
 
 To ensure we get the latest version, we’ll install Docker from the official Docker repository. To do that, we’ll add a
 new package source, add the GPG key from Docker to ensure the downloads are valid, and then install the package.
@@ -93,7 +102,7 @@ The output should be similar to the following, showing that the service is activ
 Installing Docker now gives you not just the Docker service (daemon) but also the docker command line utility, or the
 Docker client.
 
-# Executing the Docker Command Without Sudo
+## Executing the Docker Command Without Sudo
 
 By default, the docker command can only be run the root user or by a user in the docker group, which is automatically
 created during Docker’s installation process. If you attempt to run the docker command without prefixing it with sudo or
@@ -134,7 +143,7 @@ please prepend the commands with sudo.
 
 Let’s explore the docker command next.
 
-# Using the Docker Command
+## Using the Docker Command
 
 Using docker consists of passing it a chain of options and commands followed by arguments. The syntax takes this form:
 
@@ -197,7 +206,7 @@ To view system-wide information about Docker, use:
 docker info
 ```
 
-# Docker with IPv6
+## Docker with IPv6
 
 As described in [docker/hub-feedback#1945](https://github.com/docker/hub-feedback/issues/1945), Docker Hub doesn't
 currently support pulling images over IPv6, which prevents users on an IPv6-only network from interacting with Docker
