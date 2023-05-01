@@ -44,7 +44,7 @@ networks:
 # Log In
 
 Because the Container is only available locally you need to setup and activate your WireGuard Connection as descripted
-in [Step 13 (WireGuard)](13_wireguard.md) and then you can open the Admin Web UI by typing ```192.168.80.3:81``` in your
+in [Step 13 (WireGuard)](../steps/13_wireguard.md) and then you can open the Admin Web UI by typing ```192.168.80.3:81``` in your
 browser.
 
 The default Credentials for the fitst login are:
