@@ -8,10 +8,20 @@ hero:
   tagline: My great project tagline
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: See the Documentation
+      link: /steps/overview
     - theme: alt
-      text: API Examples
-      link: /api-examples
----
+      text: Get the bash script
+      link: https://avatars.githubusercontent.com/u/26936278?v=4
 
+features:
+  - icon: 💻
+    title: Simple and minimal, always
+    details: Lorem ipsum...
+  - icon: 🛠
+    title: Another cool feature
+    details: Lorem ipsum...
+  - icon: 🐳
+    title: Another cool feature
+    details: Lorem ipsum...
+---
