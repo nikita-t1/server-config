@@ -18,7 +18,7 @@ A Collection of Software, which makes using the Linux Shell much easier/simpler
 sudo apt-get install neofetch
 ```
 
-![](img/neofetch.bmp)
+![](../img/neofetch.png)
 
 ::: tip
 Which informations are shown can be customized in `${HOME}/.config/neofetch/config.conf`
@@ -41,7 +41,7 @@ echo "alias ls='exa -la'" >> .bashrc
 . ~/.bashrc
 ```
 
-![](img/exa.bmp)
+![](../img/exa.png)
 
 ::: tip
 You can even add icons with the `--icons` flag, if you have a font that supports icons, like [nerd font](https://github.com/ryanoasis/nerd-fonts/).
@@ -63,7 +63,7 @@ echo "alias bat='batcat'" >> .bashrc
 . ~/.bashrc
 ```
 
-![](img/bat.bmp)
+![](../img/bat.png)
 
 ## [micro](https://github.com/zyedidia/micro)
 
@@ -75,7 +75,7 @@ echo "alias bat='batcat'" >> .bashrc
 sudo apt install micro
 ```
 
-![](img/micro.bmp)
+![](../img/micro.png)
 
 ::: tip
 unlike nano, micro uses keyboard shortcuts that you are probably familiar with from almost all graphical user interfaces
@@ -106,7 +106,7 @@ unlike nano, micro uses keyboard shortcuts that you are probably familiar with f
 sudo apt-get install htop 
 ```
 
-![](img/htop.bmp)
+![](../img/htop.png)
 
 ## [thefuck](https://github.com/nvbn/thefuck)
 
@@ -122,7 +122,7 @@ It is recommended that you place this command in your .bash_profile, .bashrc, .z
 eval $(thefuck --alias)
 ```
 
-![](img/thefuck.bmp)
+![](../img/thefuck.png)
 
 ## [fd](https://github.com/sharkdp/fd)
 
@@ -133,7 +133,7 @@ sudo apt install fd-find
 ```
 
 Note that the binary is called fdfind as the binary name fd is already used by another package
-![](img/fd.bmp)
+![](../img/fd.png)
 
 ## [nvm](https://github.com/nvm-sh/nvm)
 
@@ -154,4 +154,4 @@ TODO
 pip3 install tldr
 ```
 
-![](img/tldr.bmp)
+![](../img/tldr.png)

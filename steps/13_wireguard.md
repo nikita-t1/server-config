@@ -161,7 +161,7 @@ click ```Add empty tunnnel....```
 
 What’s nice about this is the GUI creates a public and private key for us automatically.
 
-![](img/generatedKeys.bmp)
+![](../img/generatedKeys.png)
 
 The final Config should the look something linke this:
 

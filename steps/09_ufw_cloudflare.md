@@ -13,14 +13,14 @@ flexibility to create custom rules.
 In your Cloudflare Dashboard:
 
 - Select the *WAF* Sub-Menu under the Security Menu  
-  ![](img/cloudflare_waf_menu.png)
+  ![](../img/cloudflare_waf_menu.png)
 
 - Create your Rules, who can and who can't access your domain  
-  ![](img/block_the_world.png)
+  ![](../img/block_the_world.png)
   In this example only users from ```Finland```, ```Germany``` and ```Netherlands``` can access the domain.
 
 - Users from other Countries on the other hand will see the following site/message from cloudflare  
-  ![](img/denied.png)
+  ![](../img/denied.png)
 
 ## Cloudflare IP Ranges
 

@@ -9,7 +9,7 @@ description: "Follow this step-by-step guide to set up Cloudflare as a DNS for y
 
 Cloudflare is a global network of edge servers  
 When you add your application to Cloudflare, we use this edge network to sit in between requests and your origin server
-![](img/website-with-cloudflare.svg)  
+![](../img/website-with-cloudflare.svg)  
 This position allows us to do several things — speeding up content delivery and user
 experience ( [CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/) ), protecting your website from malicious
 activity ( [DDoS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/), [Firewall](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/) ),
@@ -20,22 +20,22 @@ routing traffic (Load balancing, Waiting Room), and more.
 Create an account on [Cloudflare.com](https://dash.cloudflare.com/sign-up).
 
 - Click on Add site and enter your domain name to add it to Cloudflare:
-  ![](img/add_site.bmp)
+  ![](../img/add_site.png)
 
 - On the next screen, you will see the list of your existing host records. Be sure to double-check if the specified DNS
   records match the ones you previously had.
-  ![](img/match_dns_records.bmp)
+  ![](../img/match_dns_records.png)
   If records shown in the list are correct, you can scroll down and click Continue.
 
 - You will see nameservers (NS), needed for your domain to work with Cloudflare. Copy the values and change the
   nameservers at your domain registrar.
-  ![](img/nameserver.bmp)
+  ![](../img/nameserver.png)
   After you specify new DNS records, propagation will start which can take up to 24 hours to fully complete.
 
 - Once the nameservers are set up, return to the Cloudflare tab and click Check nameservers:
-  ![](img/check_nameserver.bmp)
+  ![](../img/check_nameserver.png)
   If the nameservers have been successfully updated, you will see the Active status:
-  ![](img/nameserver_active.bmp)
+  ![](../img/nameserver_active.png)
 
 ## Cloudflare WAF (Web Application Firewall)
 
@@ -45,14 +45,14 @@ flexibility to create custom rules.
 In your Cloudflare Dashboard:
 
 - Select the *WAF* Sub-Menu under the Security Menu  
-  ![](img/cloudflare_waf_menu.png)
+  ![](../img/cloudflare_waf_menu.png)
 
 - Create your Rules, who can and who can't access your domain  
-  ![](img/block_the_world.png)
+  ![](../img/block_the_world.png)
   In this example only users from ```Finland```, ```Germany``` and ```Netherlands``` can access the domain.
 
 - Users from other Countries on the other hand will see the following site/message from cloudflare  
-  ![](img/denied.png)
+  ![](../img/denied.png)
 
 ## Cloudflare IP Ranges
 

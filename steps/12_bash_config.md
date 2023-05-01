@@ -18,7 +18,7 @@ export HISTTIMEFORMAT="%F %T "
 
 # Custom Bash Prompt
 
-![](img/custom_prompt.png)
+![](../img/custom_prompt.png)
 
 Create the file ```.bash_prompt``` and open in in a text editor
 
