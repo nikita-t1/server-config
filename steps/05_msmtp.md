@@ -169,7 +169,8 @@ echo "Content of email" | mail -s "Subject" test@mail.de
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [Linux: Einfach E-Mails versenden mit msmtp](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/)  
 [Raspberry Pi – E-Mails versenden mit msmtp](https://goneuland.de/raspberry-pi-e-mails-versenden-mit-msmtp/)  
 [MSMTP - E-Mails einfach versenden unter Linux](https://www.laub-home.de/wiki/MSMTP_-_E-Mails_einfach_versenden_unter_Linux)
+:::

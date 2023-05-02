@@ -195,7 +195,8 @@ apticron
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [Unattended upgrades](https://github.com/mvo5/unattended-upgrades)  
 [Automatic Security Updates and Alerts](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#automatic-security-updates-and-alerts)  
 [Debian / Ubuntu Linux: Send Automatic Email Notification When Security Upgrades Available](https://www.cyberciti.biz/faq/apt-get-apticron-send-email-upgrades-available/)
+:::

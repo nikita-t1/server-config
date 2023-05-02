@@ -109,9 +109,10 @@ service sshd restart
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [sshd_config](https://manpages.ubuntu.com/manpages/xenial/man5/sshd_config.5.html)  
 [OpenSSH Konfiguration](https://www.thomas-krenn.com/de/wiki/OpenSSH_Konfiguration)
 
 Nice Discussion:  
 [Moving your SSH port isn’t security by obscurity](https://news.ycombinator.com/item?id=24542104)
+:::

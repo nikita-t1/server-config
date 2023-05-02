@@ -260,11 +260,12 @@ Now that you have defined the peer’s connection parameters on the server, the 
 peer.
 
 ---
-Sources:  
+::: details Sources:  
 [How To Set Up WireGuard on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04#step-6-starting-the-wireguard-server)  
 [Getting started with WireGuard VPN: Important Concepts](https://serversideup.net/getting-started-with-wireguard-vpn-important-concepts/)  
 [How to configure a WireGuard Windows 10 VPN client](https://serversideup.net/how-to-configure-a-wireguard-windows-10-vpn-client/)  
 [WireGuard Endpoints and IP Addresses](https://www.procustodibus.com/blog/2021/01/wireguard-endpoints-and-ip-addresses/)  
-[How to Set Up WireGuard VPN on Ubuntu 20.04](https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-20-04/)
+[How to Set Up WireGuard VPN on Ubuntu 20.04](https://linuxize.com/post/how-to-set-up-wireguard-vpn-on-ubuntu-20-04/)  
 [Route only local LAN traffic through wireguard](https://archive.ph/wJJbO)  
 [Assign static IP to Docker container](https://stackoverflow.com/questions/27937185/assign-static-ip-to-docker-container)
+:::

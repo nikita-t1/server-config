@@ -114,7 +114,8 @@ sudo ufw deny 443/tcp comment 'deny HTTPS traffic outside of Cloudflare'
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [IP Ranges](https://www.cloudflare.com/ips/)  
 [How does ufw handle conflicting rules?](https://askubuntu.com/questions/323544/how-does-ufw-handle-conflicting-rules)  
 [How to block specific IP range in ufw?](https://askubuntu.com/questions/851785/how-to-block-specific-ip-range-in-ufw)
+:::

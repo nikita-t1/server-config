@@ -146,7 +146,8 @@ sudo ufw enable
 > ```
 
 ---
-Sources:  
+::: details Sources:  
 [How To Set Up a Firewall with UFW on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-22-04)  
 [How To Setup a Firewall with UFW on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server)  
 [The Network](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#the-network)
+:::

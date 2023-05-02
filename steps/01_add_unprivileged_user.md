@@ -51,5 +51,6 @@ ssh newuser@<IP-ADDRESS>
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [How to Add and Delete Users on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04)
+:::

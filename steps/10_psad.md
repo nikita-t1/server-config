@@ -151,6 +151,7 @@ sudo psad --Status
 ```
 
 ---
-Sources:  
+::: details Sources:  
 [iptables Intrusion Detection And Prevention with PSAD](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#iptables-intrusion-detection-and-prevention-with-psad)  
 [How To Use psad to Detect Network Intrusion Attempts on an Ubuntu VPS](https://www.digitalocean.com/community/tutorials/how-to-use-psad-to-detect-network-intrusion-attempts-on-an-ubuntu-vps)  
+:::

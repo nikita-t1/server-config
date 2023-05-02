@@ -62,9 +62,10 @@ in [Step 13 (WireGuard)](13_wireguard.md) and then you can open the Portainer We
 in your browser.
 
 ---
-Sources:  
+::: details Sources:  
 [Portainer unter Docker installieren](https://www.ionos.de/digitalguide/server/konfiguration/portainer-unter-docker-installieren/)  
 [Install Portainer with Docker on Linux](https://docs.portainer.io/start/install/server/docker/linux)  
 [Uncomplicated Firewall (UFW) is not blocking anything when using Docker](https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker)  
 [How to get a Docker container's IP address from the host](https://stackoverflow.com/questions/17157721/how-to-get-a-docker-containers-ip-address-from-the-host)  
 [Docker und ufw](https://gnulinux.ch/docker-und-ufw)
+:::

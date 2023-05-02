@@ -326,7 +326,7 @@ Please note this new endpoint is only a **beta – there is no guarantee of func
 in the future**. Do not use this endpoint for anything other than testing.
 
 ---
-Sources:  
+::: details Sources:  
 [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)  
 [How To Install and Use Docker on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)  
 [How do I install Docker on Ubuntu 16.04 LTS?](https://askubuntu.com/a/938701)
@@ -336,4 +336,5 @@ Sources:
 
 [How to create and manage docker networks and docker volumes](https://webdock.io/en/docs/how-guides/docker-guides/how-to-create-and-manage-docker-networks-and-docker-volumes)  
 [Join an existing network from a docker container in docker compose](https://poopcode.com/join-to-an-existing-network-from-a-docker-container-in-docker-compose/)  
-[https://stackoverflow.com/questions/38088279/communication-between-multiple-docker-compose-projects](https://stackoverflow.com/questions/38088279/communication-between-multiple-docker-compose-projects)
+[Communication between multiple docker-compose projects](https://stackoverflow.com/questions/38088279/communication-between-multiple-docker-compose-projects)
+:::

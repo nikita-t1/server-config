@@ -209,10 +209,11 @@ sudo fail2ban-client status sshd
 >```
 
 ---
-Sources:  
+::: details Sources:  
 [How To Protect SSH with Fail2Ban on Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-22-04)  
 [Server absichern mit Fail2ban](https://www.ionos.de/hilfe/sicherheit/dedicated-server/server-absichern-mit-fail2ban/)  
 [SSH-Server unter Linux mit Fail2Ban absichern](https://www.bennetrichter.de/anleitungen/ssh-server-fail2ban-linux/)  
 [fail2ban](https://wiki.ubuntuusers.de/fail2ban/)  
 [Fail2Ban Configuration](https://manpages.debian.org/testing/fail2ban/jail.conf.5.en.html)  
 [Application Intrusion Detection And Prevention With Fail2Ban](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server#application-intrusion-detection-and-prevention-with-fail2ban)
+:::

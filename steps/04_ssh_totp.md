@@ -246,7 +246,8 @@ SSH key and asking for a verification code, which we had working previously. Now
 and two different types of things we have (SSH key and verification code) over two different channels.
 
 ---
-Sources:  
+::: details Sources:  
 [How To Set Up Multi-Factor Authentication for SSH on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-16-04)  
 [SSH-Login mit 2-Faktor-Authentifizierung absichern](https://www.thomas-krenn.com/de/wiki/SSH-Login_mit_2-Faktor-Authentifizierung_absichern)  
-[https://www.credativ.de/blog/howtos/zwei-faktor-authentisierung-fuer-openssh-und-openvpn/](https://www.credativ.de/blog/howtos/zwei-faktor-authentisierung-fuer-openssh-und-openvpn/)
+[Zwei-Faktor-Authentisierung für OpenSSH](https://www.credativ.de/blog/howtos/zwei-faktor-authentisierung-fuer-openssh-und-openvpn/)
+:::
