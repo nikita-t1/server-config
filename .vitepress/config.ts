@@ -13,7 +13,7 @@ export default defineConfig({
         aside: true,
         outline: [2, 3],
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/vuejs/vitepress'},
+            {icon: 'github', link: 'https://github.com/nikita-t1/server-config'},
         ],
         footer: {
             message: 'Created by nikita-t1.',
