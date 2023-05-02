@@ -32,7 +32,7 @@ If your Server only has a IPv6 Address use the following command:
 docker run -d -p 127.0.0.1:9443:9443 --network shared-docker-network --ip 192.168.80.2 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data registry.ipv6.docker.com/portainer/portainer-ce:latest
 ```  
 
-See [docker-with-ipv6](14_docker.md#docker-with-ipv6)
+See [docker-with-ipv6](docker.md#docker-with-ipv6)
 :::
 
 ::: tip
@@ -58,7 +58,7 @@ This command returns the IP Address of the Docker Container running Portainer~~
 ~~``` bashdocker inspect -f '{{range.NetworkSettings.Networks}} {{.IPAddress}}{{end}}' portainer```~~ -->
 
 Because the Container is only available locally you need to set up and activate your WireGuard Connection as described
-in [Step 13 (WireGuard)](13_wireguard.md) and then you can open the Portainer Web UI by typing `192.168.80.2:9443`
+in [Step 13 (WireGuard)](wireguard.md) and then you can open the Portainer Web UI by typing `192.168.80.2:9443`
 in your browser.
 
 ---
