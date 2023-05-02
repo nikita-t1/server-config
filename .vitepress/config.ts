@@ -45,7 +45,6 @@ export default defineConfig({
                         {text: '.bashrc File', link: '/steps/12_bash_config'},
                         {text: 'WireGuard VPN', link: '/steps/13_wireguard'},
                         {text: 'Docker', link: '/steps/14_docker'},
-                        {text: 'Docker Network', link: '/steps/15_docker_network'},
                         {text: 'Portainer', link: '/steps/16_portainer'},
                     ],
                 },
