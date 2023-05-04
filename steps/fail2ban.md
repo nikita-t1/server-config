@@ -13,6 +13,7 @@ It will monitor network traffic/logs and prevent intrusions by blocking suspicio
 failed connections in a short time-span).
 
 ## Install
+Begin by running the following command to install Fail2ban:
 
 ``` bash
 sudo apt install fail2ban
@@ -36,21 +37,24 @@ sudo nano /etc/fail2ban/jail.local
 ```
 
 Change the following:
-> ``` bash
-> bantime = 10min // [!code --]
-> bantime = 24h // [!code ++]
-> 
-> findtime = 10 min // [!code --]
-> findtime = 24h // [!code ++]
-> 
-> maxretry = 5 // [!code --]
-> maxretry = 3 // [!code ++]
-> ...
-> banaction = iptables // [!code --]
-> banaction = ufw // [!code ++]
-> ```
+::: code-group
+```bash [/etc/fail2ban/jail.local]
+bantime = 10min // [!code --]
+bantime = 24h // [!code ++]
 
-- **`ignoreip`**: This parameter identifies IP addresses that should be ignored by the banning system. By default, this is
+findtime = 10 min // [!code --]
+findtime = 24h // [!code ++]
+
+maxretry = 5 // [!code --]
+maxretry = 3 // [!code ++]
+
+banaction = iptables // [!code --]
+banaction = ufw // [!code ++]
+```
+:::
+
+- **`ignoreip`**: This parameter identifies IP addresses that should be ignored by the banning system. By default, this
+  is
   just set to ignore traffic coming from the machine itself, so that you don’t fill up your own logs or lock yourself
   out.
 - **`bantime`**: This parameter sets the length of a ban, in seconds. The default is 10 minutes.
@@ -112,6 +116,7 @@ In the SSH Section:
 - add ```banaction = ufw``` to tell fail2ban to use the ufw as the banaction
 
 ::: code-group
+
 ``` ssh-config [/etc/fail2ban/jail.local]
 [sshd]
 
@@ -125,6 +130,7 @@ port    = ssh,22222
 logpath = %(sshd_log)s
 backend = %(sshd_backend)s
 ```
+
 :::
 
 ## Start fail2ban
@@ -145,6 +151,7 @@ sudo systemctl start fail2ban
 You can verify that it’s running with systemctl status:
 
 ::: code-group
+
 ``` bash [Command]
 sudo systemctl status fail2ban
 ```

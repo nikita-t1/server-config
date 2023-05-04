@@ -17,14 +17,14 @@ In your Cloudflare Dashboard:
 
 - Create your Rules, who can and who can't access your domain  
   ![](../img/block_the_world.png)
-  In this example only users from ```Finland```, ```Germany``` and ```Netherlands``` can access the domain.
+  In this example only users from `Finland`, `Germany` and `Netherlands` can access the domain.
 
 - Users from other Countries on the other hand will see the following site/message from cloudflare  
   ![](../img/denied.png)
 
 ## Cloudflare IP Ranges
 
-From now on thwe only IP's that are directly connecting to the domain are the ones from cloudflare
+From now on the only IP's that are directly connecting to the domain are the ones from cloudflare
 | [IPv4](https://www.cloudflare.com/ips-v4) | [IPv6](https://www.cloudflare.com/ips-v6) |
 |---------------- |-----------------|
 | 103.21.244.0/22 | 2400:cb00::/32 |
@@ -54,7 +54,7 @@ sudo ufw status numbered
 
 > ```
 > Status: active
->  
+> 
 >      To                         Action      From
 >      --                         ------      ----
 > [ 1] 22/tcp                     ALLOW IN    Anywhere                  
@@ -86,8 +86,8 @@ sudo ufw deny 80/tcp comment 'deny HTTP traffic out' # Deny HTTP
 ## Allow only from cloudflare IP's on 443
 
 Users that somehow find out the IP address of the Server could then theoretically connect to the Server using <
-IP-ADDRESS>:443
-To prevent this we can only allow ip addresses which belong to cloudflare to connect to this port
+IP-ADDRESS >:443
+To prevent this we can only allow ip addresses which belong to cloudflare to connect to this port:
 
 ``` bash
 for ip in `curl https://www.cloudflare.com/ips-v4`; do sudo ufw allow from $ip to any port 443 comment 'allow Cloudflare IPs'; done

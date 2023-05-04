@@ -27,7 +27,8 @@ Which informations are shown can be customized in `${HOME}/.config/neofetch/conf
 ## [exa](https://github.com/ogham/exa)
 
 > exa is a modern replacement for the venerable file-listing command-line program ls that ships with Unix and Linux
-> operating systems, giving it more features and better defaults. It uses colours to distinguish file types and metadata.
+> operating systems, giving it more features and better defaults. It uses colours to distinguish file types and
+> metadata.
 > It knows about symlinks, extended attributes, and Git. And it’s small, fast, and just one single binary.
 
 ``` bash
@@ -44,7 +45,8 @@ echo "alias ls='exa -la'" >> .bashrc
 ![](../img/exa.png)
 
 ::: tip
-You can even add icons with the `--icons` flag, if you have a font that supports icons, like [nerd font](https://github.com/ryanoasis/nerd-fonts/).
+You can even add icons with the `--icons` flag, if you have a font that supports icons,
+like [nerd font](https://github.com/ryanoasis/nerd-fonts/).
 :::
 
 ## [bat](https://github.com/sharkdp/bat)
@@ -63,12 +65,13 @@ echo "alias bat='batcat'" >> .bashrc
 . ~/.bashrc
 ```
 
-![](../img/bat.png)
+![](../img/bat.png){ style="display: block; margin: 0 auto" }
 
 ## [micro](https://github.com/zyedidia/micro)
 
 > **micro** is a terminal-based text editor that aims to be easy to use and intuitive, while also taking advantage of
-> the capabilities of modern terminals. It comes as a single, batteries-included, static binary with no dependencies; you
+> the capabilities of modern terminals. It comes as a single, batteries-included, static binary with no dependencies;
+> you
 > can download and use it right now!
 
 ``` bash
@@ -79,6 +82,7 @@ sudo apt install micro
 
 ::: tip
 unlike nano, micro uses keyboard shortcuts that you are probably familiar with from almost all graphical user interfaces
+
 ``` json
 "Ctrl-s":  "Save",
 "Ctrl-f":  "Find",
@@ -94,6 +98,7 @@ unlike nano, micro uses keyboard shortcuts that you are probably familiar with f
 "Ctrl-a":  "SelectAll",
 "Ctrl-q":  "Quit",
 ```
+
 :::
 
 ## [htop](https://htop.dev/)
@@ -117,7 +122,9 @@ sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools
 pip3 install thefuck --user
 ```
+
 It is recommended that you place this command in your .bash_profile, .bashrc, .zshrc or other startup script:
+
 ``` bash
 eval $(thefuck --alias)
 ```
@@ -133,7 +140,7 @@ sudo apt install fd-find
 ```
 
 Note that the binary is called fdfind as the binary name fd is already used by another package
-![](../img/fd.png)
+![](../img/fd.png){ style="display: block; margin: 0 auto" }
 
 ## [nvm](https://github.com/nvm-sh/nvm)
 
@@ -142,7 +149,12 @@ Note that the binary is called fdfind as the binary name fd is already used by a
 > macOS, and windows WSL.
 
 ``` bash
-TODO
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+echo "export NVM_DIR=\"$HOME/.nvm\"" >>~/.bashrc
+echo "[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"  # This loads nvm" >>~/.bashrc
+echo "[ -s \"$NVM_DIR/bash_completion\" ] && \. \"$NVM_DIR/bash_completion\"  \# This loads nvm bash_completion" >>~/.bashrc
+source ~/.bashrc
+nvm install v18.16.0
 ```
 
 ## [tldr](https://github.com/tldr-pages/tldr)

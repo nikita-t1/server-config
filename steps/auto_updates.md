@@ -46,7 +46,8 @@ sudo nano /etc/apt/apt.conf.d/51myunattended-upgrades
 
 and add this:
 
-```
+::: code-group
+``` [/etc/apt/apt.conf.d/51myunattended-upgrades]
 // Enable the update/upgrade script (0=disable)
 APT::Periodic::Enable "1";
 
@@ -101,6 +102,7 @@ Unattended-Upgrade::Automatic-Reboot "true";
 // Automatically reboot even if users are logged in.
 Unattended-Upgrade::Automatic-Reboot-WithUsers "false";
 ```
+:::
 
 Run a dry-run of unattended-upgrades to make sure your configuration file is okay:
 
@@ -116,12 +118,14 @@ The current schedule can be viewed in:
 /etc/apt/apt.conf.d/20auto-upgrades
 ```
 
-With the default beeing:
+With the default being:
 
-```
+::: code-group
+``` [/etc/apt/apt.conf.d/20auto-upgrades]
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade "1";
 ```
+:::
 
 Which means that Unattended Upgrade will run every 1 day. If the number is "0" then unattended upgrades are disabled.
 
@@ -147,13 +151,12 @@ NOTIFY_NO_UPDATES="1" // [!code ++]
 
 To see if it works, you can send a mail with apticron with the following command:
 
+::: code-group
 ``` bash
 sudo apticron
 ```
 
-Sample Report
-
-```
+``` [output]
 apticron report [Wed, 17 Mar 2010 10:44:39 +0100] 
 ========================================================================
 
@@ -193,6 +196,7 @@ It is recommended that you simulate the upgrade first to confirm that the action
 --
 apticron
 ```
+:::
 
 ---
 ::: details Sources:  

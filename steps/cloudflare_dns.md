@@ -6,14 +6,16 @@ description: "Follow this step-by-step guide to set up Cloudflare as a DNS for y
 # {{ $frontmatter.title }}
 
 ## Introduction
-
-Cloudflare is a global network of edge servers  
-When you add your application to Cloudflare, we use this edge network to sit in between requests and your origin server
-![](../img/website-with-cloudflare.svg)  
-This position allows us to do several things — speeding up content delivery and user
-experience ( [CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/) ), protecting your website from malicious
-activity ( [DDoS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/), [Firewall](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/) ),
-routing traffic (Load balancing, Waiting Room), and more.
+Cloudflare operates as a global network of edge servers that acts as a mediator between user requests and origin
+servers.
+![](../img/website-with-cloudflare.svg)
+This positioning provides various benefits, including content delivery
+acceleration ([CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/)), protection against
+malicious
+activity ([DDoS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/), [Firewall](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/)),
+traffic routing (Load balancing, Waiting Room), and more. By utilizing
+strategically placed edge servers worldwide, Cloudflare can optimize content delivery, safeguard websites from malicious
+traffic, and direct traffic based on predefined rules.
 
 ## Point a Domain to Cloudflare
 
@@ -36,44 +38,6 @@ Create an account on [Cloudflare.com](https://dash.cloudflare.com/sign-up).
   ![](../img/check_nameserver.png)
   If the nameservers have been successfully updated, you will see the Active status:
   ![](../img/nameserver_active.png)
-
-## Cloudflare WAF (Web Application Firewall)
-
-The Cloudflare Web Application Firewall (WAF) provides both automatic protection from vulnerabilities and the
-flexibility to create custom rules.
-
-In your Cloudflare Dashboard:
-
-- Select the *WAF* Sub-Menu under the Security Menu  
-  ![](../img/cloudflare_waf_menu.png)
-
-- Create your Rules, who can and who can't access your domain  
-  ![](../img/block_the_world.png)
-  In this example only users from ```Finland```, ```Germany``` and ```Netherlands``` can access the domain.
-
-- Users from other Countries on the other hand will see the following site/message from cloudflare  
-  ![](../img/denied.png)
-
-## Cloudflare IP Ranges
-
-From now on the only IP's that are directly connecting to the domain are the ones from cloudflare
-| [IPv4](https://www.cloudflare.com/ips-v4) | [IPv6](https://www.cloudflare.com/ips-v6) |
-|-------------------------------------------|-------------------------------------------|
-| 103.21.244.0/22 | 2400:cb00::/32 |
-| 103.22.200.0/22 | 2606:4700::/32 |
-| 103.31.4.0/22 | 2803:f800::/32 |
-| 104.16.0.0/13 | 2405:b500::/32 |
-| 104.24.0.0/14 | 2405:8100::/32 |
-| 108.162.192.0/1 | 2a06:98c0::/29 |
-| 131.0.72.0/22 | 2c0f:f248::/32 |
-| 141.101.64.0/18 | |
-| 162.158.0.0/15 | |
-| 172.64.0.0/13 | |
-| 173.245.48.0/20 | |
-| 188.114.96.0/20 | |
-| 190.93.240.0/20 | |
-| 197.234.240.0/2 | |
-| 198.41.128.0/17 | |
 
 ---
 ::: details Sources:  

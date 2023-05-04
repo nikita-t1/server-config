@@ -1,4 +1,11 @@
-# Introduction
+---
+title: Port Scan Attack Detector (PSAD)
+description: Port Scan Attack Detector (PSAD) is a collection of lightweight system daemons that run on Linux system and analyze iptables log messages to detect port scans and other suspicious traffic.
+---
+
+# {{ $frontmatter.title }}
+
+## Introduction
 
 PSAD also known as Port Scan Attack Detector is a collection of lightweight system daemons that run on Linux system and
 analyze iptables log messages to detect port scans and other suspicious traffic.
@@ -9,13 +16,13 @@ detection of intrusion events.
 It is specially designed to work with Linux iptables/firewalld to detect suspicious traffic such as, port scans,
 backdoors and botnet command.
 
-# Install psad
+## Install psad
 
 ``` bash
 sudo apt install psad
 ```
 
-# Configure psad to Detect Scans
+## Configure psad to Detect Scans
 
 Open the main psad configuration file with root privileges:
 
@@ -27,19 +34,24 @@ The first things you should modify are at the top of the file. You should change
 the email addresses you would like to notify when a report is generated. You should also modify the `HOSTNAME` to match
 your server's hostname so that it references the correct machine:
 
-```
+::: code-group
+``` [/etc/psad/psad.conf]
+
 EMAIL_ADDRESSES     address1@domain.com, address2@other.com;
 HOSTNAME            Node1;
 ```
+:::
+::: code-group
+``` [/etc/psad/psad.conf]
 
-```
 ENABLE_PSADWATCHD Y;
 ENABLE_AUTO_IDS Y;
 ENABLE_AUTO_IDS_EMAILS Y;
 EXPECT_TCP_OPTIONS Y;
 ```
+:::
 
-# Configure ufw for psad
+## Configure ufw for psad
 
 Now we need to make some changes to ufw so it works with psad by telling `ufw` to log all traffic so `psad` can analyze it.
 
@@ -55,13 +67,20 @@ Edit the files:
 - /`etc/ufw/before.rules`
 - `/etc/ufw/before6.rules`
 
-And add add this at the end but <a style="color:goldenrod;">before</a> the `COMMIT` line:
+And add this at the end but <a style="color:goldenrod;">before</a> the `COMMIT` line:
 
-``` 
+::: code-group
+``` [/etc/ufw/before.rules]
 # log all traffic so psad can analyze
 -A INPUT -j LOG --log-tcp-options --log-prefix "[IPTABLES] "
 -A FORWARD -j LOG --log-tcp-options --log-prefix "[IPTABLES] "
 ```
+``` [/etc/ufw/before6.rules]
+# log all traffic so psad can analyze
+-A INPUT -j LOG --log-tcp-options --log-prefix "[IPTABLES] "
+-A FORWARD -j LOG --log-tcp-options --log-prefix "[IPTABLES] "
+```
+:::
 
 ::: tip
 We're adding a log prefix to all the iptables logs. We'll need this
@@ -107,7 +126,7 @@ sudo psad --fw-analyze
 [+] Exiting.
 ```
 
-# Status
+## Status
 
 Check the status of psad:
 

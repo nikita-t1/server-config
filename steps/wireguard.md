@@ -11,7 +11,7 @@ WireGuard is a lightweight Virtual Private Network (VPN) that supports IPv4 and 
 traverse untrusted networks as if you were on a private network
 
 > This Guide sets up WireGuard to connect a peer to the WireGuard Server in order to access
-> services <span style="color:brown;font-weight: bold">on the server only</span>.
+> services <span style="color:darkorange;font-weight: bold">on the server only</span>.
 
 ## Install WireGuard
 
@@ -25,7 +25,8 @@ Create the private key for WireGuard and change its permissions using the follow
 
 ``` bash
 wg genkey | sudo tee /etc/wireguard/private.key
-
+```
+``` bash
 sudo chmod go= /etc/wireguard/private.key
 ```
 
@@ -68,13 +69,15 @@ Add the following lines to the file, substituting your private key in place of t
 highlighted ```base64_encoded_private_key_goes_here``` value. You can also change the ListenPort line if you would like
 WireGuard to be available on a different port:
 
-``` yaml
+::: code-group
+``` yaml [/etc/wireguard/wg0.conf]
 [Interface]
 PrivateKey = base64_encoded_private_key_goes_here
 Address = 10.8.0.1/24, 
 ListenPort = 51820
 SaveConfig = true
 ```
+:::
 
 The SaveConfig line ensures that when a WireGuard interface is shutdown, any changes will get saved to the configuration
 file.
@@ -104,7 +107,6 @@ be ```/etc/wireguard/prod.conf```. Each tunnel configuration can contain > diffe
 settings. In this way you can support multiple different peer connections, each with their own unique IP addresses and >
 routing rules.
 :::
-
 
 Now start the service:
 
@@ -149,6 +151,15 @@ command itself if you would like to try manually configuring the VPN interface.
 
 With the server configured and running, the next step is to configure your client machine as a WireGuard Peer and
 connect to the WireGuard Server.
+
+## Add Firewall Rule to Allow WireGuard Traffic
+
+To allow WireGuard traffic to pass through your server’s firewall, you need to add a rule to allow UDP traffic to the
+WireGuard port (default: `51820`).
+
+``` bash
+sudo ufw allow 51820/udp
+```
 
 ## Configuring a WireGuard Peer
 

@@ -61,6 +61,10 @@ Because the Container is only available locally you need to set up and activate 
 in [Step 13 (WireGuard)](wireguard.md) and then you can open the Portainer Web UI by typing `192.168.80.2:9443`
 in your browser.
 
+::: tip
+
+:::
+
 ---
 ::: details Sources:  
 [Portainer unter Docker installieren](https://www.ionos.de/digitalguide/server/konfiguration/portainer-unter-docker-installieren/)  

@@ -5,16 +5,17 @@ description: "Configure your SSH settings for increased security by adjusting se
 
 # {{ $frontmatter.title }}
 
-## SSH Login Log
-
-To access the SSH login log file, enter the following command in the terminal:
+## SSH Authentication Log
+::: tip
+The SSH Authentication Logs are located in the ```/var/log/auth.log``` file. To access the SSH login log file, enter the
+following command in the terminal:
 
 ``` bash
-cat /var/log/auth.log
+nano /var/log/auth.log
 ```
-
 This file will contain information about successful and failed login attempts, which can be helpful for monitoring and
 troubleshooting.
+:::
 
 ## SSH Config
 
@@ -31,53 +32,59 @@ Here are some key settings to consider changing:
 ### Port Number
 
 By changing the default SSH port, you can make it harder for attackers to discover your server's SSH service.
-
-```bash
-
+::: code-group
+```bash [/etc/ssh/sshd_config]
 # Specifies the port number that sshd(8) listens on.
 Port 22 // [!code --]
-Port 2002 // [!code ++]
+Port 420 // [!code ++]
 
 ```
+:::
 
 ### LoginGraceTime
 
 Setting a shorter LoginGraceTime can reduce the window of opportunity for attackers attempting to brute force your SSH
 login.
 
-``` bash
-# The server disconnects after this time if the user has not successfully logged in. 
+::: code-group
+```bash [/etc/ssh/sshd_config]# The server disconnects after this time if the user has not successfully logged in. 
 # If the value is 0, there is no time limit. 
 LoginGraceTime 120 // [!code --]
 LoginGraceTime 20 // [!code ++]
 ```
+:::
 
 ### MaxAuthTries
 
 By setting a lower value for MaxAuthTries, you can prevent attackers from making multiple login attempts.
 
-``` bash
+::: code-group
+```bash [/etc/ssh/sshd_config]
 # Specifies the maximum number of authentication attempts permitted per connection. 
 MaxAuthTries 6 // [!code --]
 MaxAuthTries 2 // [!code ++]
 ```
+:::
 
 ### MaxSessions
 
 Setting a lower value for MaxSessions can help prevent resource exhaustion attacks.
 
-``` bash
+::: code-group
+```bash [/etc/ssh/sshd_config]
 # Specifies the maximum number of open shell, login or subsystem (e.g. sftp) sessions permitted per network connection. 
 MaxSessions 10 // [!code --]
 MaxSessions 3 // [!code ++]
 ```
+:::
 
 ### MaxStartups
 
 By setting a lower value for MaxStartups, you can limit the number of unauthenticated connections to your SSH daemon,
 which can help prevent denial of service attacks.
 
-``` bash
+::: code-group
+```bash [/etc/ssh/sshd_config]
 # Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon.
 # Additional connections will be dropped until authentication succeeds or the LoginGraceTime expires for a connection.
 # The default is 10:30:100.
@@ -88,22 +95,27 @@ which can help prevent denial of service attacks.
 MaxStartups 10 // [!code --]
 MaxStartups 1 // [!code ++]
 ```
+:::
 
 ### PermitRootLogin
 
 Disabling PermitRootLogin can prevent attackers from logging in as the root user, which can help prevent certain types
 of attacks.
 
-``` bash
+::: code-group
+```bash [/etc/ssh/sshd_config]
 # Specifies whether root can log in using ssh(1). 
 # The argument must be “yes”, “prohibit-password”, “without-password”, “forced-commands-only”, or “no”.  
 # If this option is set to “no”, root is not allowed to log in.
 PermitRootLogin prohibit-password // [!code --]
 PermitRootLogin no // [!code ++]
 ```
+:::
 
 ## Reload SSH
+
 After making changes to the sshd_config file, reload the SSH service:
+
 ``` bash
 service sshd restart
 ```

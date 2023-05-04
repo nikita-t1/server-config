@@ -33,7 +33,8 @@ The Content of the Configuration File should be the following:
 
 Fields marked with `# TODO` have to be replaced with your own Values
 
-``` 
+::: code-group
+``` [/etc/msmtprc]
 # Set default values for all following accounts.
 defaults
 
@@ -112,6 +113,7 @@ account default: bob@meindedomain.de // [!code focus]
 # Map local users to mail addresses (for crontab)
 aliases /etc/aliases
 ```
+:::
 
 > TODO -> Move to Password method 2
 
@@ -137,14 +139,16 @@ msmtp:
 sudo nano /etc/aliases
 ```
 
-The recipient address of the root account is now specified here. E-mails will now be sent to this address if, for
+The recipient address of the root account is now specified here. E-Mails will now be sent to this address if, for
 example, a cron job should fail. In addition, a general "fallback recipient address" is specified if system messages do
 not occur in the context of the root account:
 
-```
+::: code-group
+``` [/etc/aliases]
 root: admin@meinedomain.de
 default: admin@meinedomain.de
 ```
+:::
 
 ## Set As Default Mail Program
 
@@ -156,9 +160,11 @@ sudo nano /etc/mail.rc
 
 The content looks like this:
 
-```
+::: code-group
+``` [/etc/mail.rc]
 set sendmail="/usr/bin/msmtp -t"
 ```
+:::
 
 ## Send Mail
 
