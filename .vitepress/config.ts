@@ -54,7 +54,7 @@ export default defineConfig({
                 },
                 {
                     text: "Bash Script",
-                    link: "/bash_script",
+                    link: "/steps/bash_script",
                 },
             ],
         },

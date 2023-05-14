@@ -12,7 +12,7 @@ hero:
       link: /steps/overview
     - theme: alt
       text: Get the bash script
-      link: https://avatars.githubusercontent.com/u/26936278?v=4
+      link: /steps/bash_script
 
 features:
   - icon: 💻
