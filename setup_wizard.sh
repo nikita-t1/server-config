@@ -136,6 +136,12 @@ sudo ufw default deny incoming comment 'deny all incoming traffic'
 echo -e "Allow SSH Port"
 sudo ufw limit "${SSH_PORT}"/tcp comment 'allow SSH connections in' # Allow SSH
 
+read -p "$(echo -e "${ORANGE}Block Port 80? (Y/n) ${NC}")" -n 1 -r BLOCK_PORT_80
+if [[ $BLOCK_PORT_80 =~ ^[Yy]?$ ]]; then
+  echo -e "Block Port 80"
+  sudo ufw deny 80/tcp comment 'deny HTTP traffic in' # Deny HTTP
+fi
+
 echo -e "Enable UFW"
 sudo ufw enable
 
@@ -156,8 +162,6 @@ echo -e "${PURPLE}Section: Cloudflare WAF ${NC}"
 echo -e "${BLUE}${BASE_URL}/steps/ufw_cloudflare${NC}"
 read -p "$(echo -e "${ORANGE}Run this Section? (Y/n) ${NC}")" -n 1 -r RUN_CLOUDFLARE_WAF
 if [[ $RUN_CLOUDFLARE_WAF =~ ^[Yy]?$ ]]; then
-  echo -e "Block Port 80"
-  sudo ufw deny 80/tcp comment 'deny HTTP traffic out' # Deny HTTP
 
   echo -e "Allow Cloudflare IPs on Port 443"
   for ip in $(curl https://www.cloudflare.com/ips-v4); do sudo ufw allow from "$ip" to any port 443 comment 'allow Cloudflare IPs'; done
