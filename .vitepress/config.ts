@@ -48,7 +48,6 @@ export default defineConfig({
                         {text: 'WireGuard VPN', link: '/steps/wireguard'},
                         {text: 'Awesome Shell', link: '/steps/install_software'},
                         {text: '.bashrc File', link: '/steps/bash_config'},
-                        {text: 'WireGuard VPN', link: '/steps/wireguard'},
                         {text: 'Docker', link: '/steps/docker'},
                         {text: 'Portainer', link: '/steps/portainer'},
                     ],
