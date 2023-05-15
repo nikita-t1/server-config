@@ -177,7 +177,96 @@ services:
       - "./letsencrypt:/letsencrypt"
       - /var/run/docker.sock:/var/run/docker.sock
 ```
+
 :::
+
+### whoami Simple Service Example
+
+To test our Traefik configuration, we will use the [`whoami`](https://github.com/traefik/whoami) (a tiny Go server that prints OS information and HTTP
+request to output) which was used to define our `whoami` container.
+
+``` yaml
+version: '3'
+
+services:
+  whoami:
+    image: traefik/whoami
+    container_name: "whoami"
+    labels:
+      # Explicitly tell Traefik to expose this container
+      - "traefik.enable=true"
+      # The domain the service will respond to
+      - "traefik.http.routers.whoami.rule=Host(`whoami.example.com`)"
+      # Allow request only from the predefined entry point named "websecure"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      # Use the "le" (Let's Encrypt) resolver created previously
+      - "traefik.http.routers.whoami.tls.certresolver=le"
+```
+
+If you then visit `https://whoami.example.com` in your browser, you should see something like this:
+``` yaml
+Hostname: d7f919e54651
+IP: 127.0.0.1
+IP: 192.168.64.2
+GET / HTTP/1.1
+Host: whoami.localhost
+User-Agent: curl/7.52.1
+Accept: */*
+Accept-Encoding: gzip
+X-Forwarded-For: 192.168.64.1
+X-Forwarded-Host: whoami.localhost
+X-Forwarded-Port: 80
+X-Forwarded-Proto: http
+X-Forwarded-Server: 7f0c797dbc51
+X-Real-Ip: 192.168.64.1
+```
+
+::: details Complete `docker-compose.yml` file
+``` yaml
+version: '3'
+
+services:
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    image: traefik:v2.10
+    # Enables the web UI and tells Traefik to listen to docker
+    command: 
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - '--certificatesresolvers.le.acme.dnschallenge=true'
+      - '--certificatesresolvers.le.acme.dnschallenge.provider=cloudflare'
+    environment:
+      # you may choose to use secrets instead of environment variables like this
+      - CF_API_EMAIL=${CLOUDFLARE_EMAIL}
+      - CF_DNS_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+    ports:
+      # The HTTPS port
+      - "443:443"
+      # The Web UI (enabled by --api.insecure=true)
+      - "127.0.0.1:8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - "./letsencrypt:/letsencrypt"
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  whoami:
+    image: traefik/whoami
+    container_name: "whoami"
+    labels:
+      # Explicitly tell Traefik to expose this container
+      - "traefik.enable=true"
+      # The domain the service will respond to
+      - "traefik.http.routers.whoami.rule=Host(`whoami.example.com`)"
+      # Allow request only from the predefined entry point named "websecure"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      # Use the "le" (Let's Encrypt) resolver created previously
+      - "traefik.http.routers.whoami.tls.certresolver=le"
+```
+:::
+
 
 ## Traefik Dashboard
 
