@@ -26,10 +26,10 @@ export default defineConfig({
         ],
         sidebar: {
             '/steps/': [
+                {text: 'Overview', link: '/steps/overview'},
                 {
                     text: "Steps",
                     items: [
-                        {text: 'Overview', link: '/steps/overview'},
                         {text: 'Cloudflare DNS', link: '/steps/cloudflare_dns'},
                         {text: 'Unprivileged User', link: '/steps/add_unprivileged_user'},
                         {
