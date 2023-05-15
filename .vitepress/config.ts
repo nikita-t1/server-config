@@ -57,6 +57,18 @@ export default defineConfig({
                     link: "/steps/bash_script",
                 },
             ],
+            '/container/': [
+                {
+                    text: "Overview",
+                    link: '/container/overview',
+                },
+                {
+                    text: "Container",
+                    items: [
+                        {text: 'Traefik', link: '/container/traefik'},
+                    ],
+                },
+            ],
         },
     },
 })
