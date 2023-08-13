@@ -123,27 +123,19 @@ command:
   - "--certificatesresolvers.myresolver.acme.email=${ACME_EMAIL}" // [!code --]
   - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json" // [!code --]
   # Enable a tls challenge named "myresolver"
-  - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+  - "--certificatesresolvers.le.acme.dnschallenge=true"
   # Use the Cloudflare provider
-  - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=cloudflare"
-  # Use the Cloudflare API key
-  - "--certificatesresolvers.myresolver.acme.dnschallenge.cloudflare.apikey=${CLOUDFLARE_API_KEY}"
-  # Use the Cloudflare email address
-  - "--certificatesresolvers.myresolver.acme.dnschallenge.cloudflare.email=${CLOUDFLARE_EMAIL}"
+  - "--certificatesresolvers.le.acme.dnschallenge.provider=cloudflare"
+  
+environment:
+    # you may choose to use secrets instead of environment variables like this
+    - CF_API_EMAIL=${CLOUDFLARE_EMAIL}
+    - CF_DNS_API_TOKEN=${CLOUDFLARE_API_TOKEN}
 ```
 
-This example uses the Cloudflare provider to generate certificates. To use it, you need to specify the Cloudflare API
-key and email address.
-
-Alternatively, you can use the Cloudflare API token:
-
-``` yaml
-command:
-  # Use the Cloudflare API key  // [!code --]
-  - "--certificatesresolvers.myresolver.acme.dnschallenge.cloudflare.apikey=${CLOUDFLARE_API_KEY}" // [!code --]
-  # Use the Cloudflare API token // [!code ++]
-  - "--certificatesresolvers.myresolver.acme.dnschallenge.cloudflare.token=${CLOUDFLARE_API_TOKEN}" // [!code ++]
-```
+This example uses the Cloudflare provider to generate certificates. To use it, you need to specify
+the [Cloudflare API Key](https://dash.cloudflare.com/profile/api-tokens) and email address.
+Here is a [Guide](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) how to create an API Token for Cloudflare.
 
 ::: details Complete `docker-compose.yml` file
 
@@ -180,9 +172,10 @@ services:
 
 :::
 
-### whoami Simple Service Example
+### whoami Service
 
-To test our Traefik configuration, we will use the [`whoami`](https://github.com/traefik/whoami) (a tiny Go server that prints OS information and HTTP
+To test our Traefik configuration, we will use the [`whoami`](https://github.com/traefik/whoami) (a tiny Go server that
+prints OS information and HTTP
 request to output) which was used to define our `whoami` container.
 
 ``` yaml
@@ -204,6 +197,7 @@ services:
 ```
 
 If you then visit `https://whoami.example.com` in your browser, you should see something like this:
+
 ``` yaml
 Hostname: d7f919e54651
 IP: 127.0.0.1
@@ -222,6 +216,7 @@ X-Real-Ip: 192.168.64.1
 ```
 
 ::: details Complete `docker-compose.yml` file
+
 ``` yaml
 version: '3'
 
@@ -265,8 +260,8 @@ services:
       # Use the "le" (Let's Encrypt) resolver created previously
       - "traefik.http.routers.whoami.tls.certresolver=le"
 ```
-:::
 
+:::
 
 ## Traefik Dashboard
 
@@ -278,8 +273,8 @@ connected to. The dashboard is available at `http://localhost:8080`
 ::: details Sources:
 [Docker Compose example](https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/)  
 [Docker-compose with let's encrypt: TLS Challenge](https://doc.traefik.io/traefik/user-guides/docker-compose/acme-tls/)  
-[Let's Encrypt Providers](https://doc.traefik.io/traefik/https/acme/#providers)  
-  
+[Let's Encrypt Providers](https://doc.traefik.io/traefik/https/acme/#providers)
+
 [Troubleshooting Traefik + Let's Encrypt + CloudFlare](https://dev.to/bgalvao/traefik-lets-encrypt-cloudflare-36fj)  
 [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)  
 [Cert Provider Cloudflare - CF_DNS_API_TOKEN integration issue #5965](https://github.com/traefik/traefik/issues/5965)  
