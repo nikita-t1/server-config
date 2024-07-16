@@ -97,7 +97,13 @@ if [[ $RUN_SSH_SETTINGS =~ ^[Yy]?$ ]]; then
   sed -i -e '/^#MaxStartups/s/^.*$/MaxStartups 1/' /etc/ssh/sshd_config
 
   echo -e "Restarting SSH Service"
-  sudo systemctl restart sshd
+  # check if the system is debian based, because the service name is different
+  if [[ -f /etc/debian_version ]]; then
+        sudo systemctl restart ssh
+  else
+        sudo systemctl restart sshd
+  fi
+
 fi
 
 echo -e "\n"
