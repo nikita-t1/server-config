@@ -1,4 +1,5 @@
 #!/bin/bash
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
@@ -14,6 +15,35 @@ echo -e "${ORANGE}--------------------------------------------------${NC}"
 echo -e "${ORANGE}               <-- server-config -->              ${NC}"
 echo -e "${ORANGE}--------------------------------------------------${NC}"
 echo -e "\n"
+
+# --------------------------------------------------
+# Ask the User for permission to run download and run the latest version of Gum
+# --------------------------------------------------
+echo "To provide a better experience, this script uses Gum to display the output in a nice way."
+echo "Gum is a terminal UI that provides a better experience for command-line applications."
+echo "Gum is required to run this script."
+read -p "$(echo -e "${ORANGE}Download and Run the latest version of Gum? (Y/n) ${NC}")" -n 1 -r RUN_GUM
+if [[ $RUN_GUM =~ ^[Yy]?$ ]]; then
+  echo -e "${ORANGE}Downloading Gum${NC}"
+  # Find the latest release of Gum and download it
+  GUM_DOWNLOAD_URL_BUT_WITH_TRAILING_QUOTATION=$(curl https://api.github.com/repos/charmbracelet/gum/releases/latest | grep -oh 'https://github.com/charmbracelet/gum/releases/download/.*Linux_x86_64.tar.gz"')
+  GUM_DOWNLOAD_URL=${GUM_DOWNLOAD_URL_BUT_WITH_TRAILING_QUOTATION:0:-1}
+
+  EXTRACTION_DIR="${GUM_DOWNLOAD_URL##*/}"
+  EXTRACTION_DIR="${EXTRACTION_DIR%%.tar.gz}"
+
+  curl -L -o /tmp/gum.tar.gz $GUM_DOWNLOAD_URL
+  tar -xvf /tmp/gum.tar.gz -C /tmp
+
+  chmod +x /tmp/${EXTRACTION_DIR}/gum
+  sudo mv /tmp/${EXTRACTION_DIR}/gum /usr/local/bin/gum
+
+  gum log --structured --time="timeonly" --level info "Gum successfully installed."
+
+else
+  echo -e "${RED}Gum is required to run this script. Exiting...${NC}"
+  exit 1
+fi
 
 # --------------------------------------------------
 # Section: Update System
@@ -98,6 +128,7 @@ if [[ $RUN_SSH_SETTINGS =~ ^[Yy]?$ ]]; then
 
   echo -e "Restarting SSH Service"
   # check if the system is debian based, because the service name is different
+  # https://www.reddit.com/r/Ubuntu/comments/1cl5qiq/comment/lbhrihx/
   if [[ -f /etc/debian_version ]]; then
         sudo systemctl restart ssh
   else
