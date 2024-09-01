@@ -5,7 +5,6 @@ export default defineConfig({
     title: "Server Config",
     description: "A VitePress Site",
     lastUpdated: true,
-    base: '/server-config/',
 //	markdown: {
 //		lineNumbers: true,
 //	},
