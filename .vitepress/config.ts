@@ -64,6 +64,7 @@ export default defineConfig({
                 {
                     text: "Container",
                     items: [
+                        {text: 'Podman', link: '/container/podman'},
                         {text: 'Traefik', link: '/container/traefik'},
                     ],
                 },
