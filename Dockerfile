@@ -1,5 +1,5 @@
 # Use a Node base image
-FROM node:18-alpine as builder
+FROM node:20 AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -8,7 +8,8 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies and build the project
-RUN npm install && npm run docs:build
+RUN npm install
+RUN npm run docs:build
 
 # Use Nginx to serve the static files
 FROM nginx:alpine
