@@ -130,6 +130,21 @@ where `xxx` is the port number from which the rootless user can start using the 
 
 After adding the above line, run the command `sysctl -p` to apply the changes.
 
+### Unqualified Registries
+
+If you want to use unqualified registries, you can add the registry to the file `/etc/containers/registries.conf`.
+
+```bash
+unqualified-search-registries = ["docker.io"]
+```
+
+::: info
+**unqualified** in this case means that the registry does not have a top-level domain like `docker.io` or `quay.io`.
+
+Otherwise, you have to specify the registry in the image name like `docker.io/library/postgres:16`.
+Or you will be asked to provide the registry when you try to pull the image.
+:::
+
 ## Updating Containers
 
 Podman ships with a built-in feature to automatically update containers. 
@@ -163,6 +178,17 @@ systemctl --user start podman-auto-update.timer
 
 The timer can be altered for custom time-based updates if desired.
 
+## Privately Hosted Registry
+
+If you have a privately hosted registry, you just need to login to the registry before starting the container.
+
+```bash
+podman login <registry-url> -u <username> -p <password>
+```
+
+Podman by default then creates a auth file in the directory `${XDG_RUNTIME_DIR}/containers/auth.json` which is used for authentication.
+
+This file is then used by the container to authenticate with the registry.
 
 
 
